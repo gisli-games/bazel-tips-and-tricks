@@ -1,4 +1,4 @@
-def _my_custom_run_rule_impl(ctx):
+def _my_custom_run_executable_rule_impl(ctx):
 
     # Declare the file that will be executed
     executable = ctx.actions.declare_file("run.bat")
@@ -12,7 +12,7 @@ def _my_custom_run_rule_impl(ctx):
     # Returns in a way that is executable
     return DefaultInfo(executable  = executable)
 
-def _my_custom_build_rule_impl(ctx):
+def _my_custom_write_to_file_rule_impl(ctx):
     # Declaring an output file to write into
     output_file = ctx.actions.declare_file(ctx.label.name + ".output")
 
@@ -27,14 +27,14 @@ def _my_custom_build_rule_impl(ctx):
     
     return output_default_info
 
-my_custom_build_rule = rule(
-    implementation = _my_custom_build_rule_impl,
+my_custom_write_to_file_rule = rule(
+    implementation = _my_custom_write_to_file_rule_impl,
     attrs = {
         "data_to_write_to_file": attr.string()
     }
 )
 
-my_custom_run_rule = rule (
-    implementation = _my_custom_run_rule_impl,
+my_custom_run_executable_rule = rule (
+    implementation = _my_custom_run_executable_rule_impl,
     executable = True,
 )
