@@ -1,0 +1,7 @@
+load("//custom_python.bzl","run_me")
+
+run_me(
+    name="yes_we_do",
+    python_files = glob("["**/*"),
+    visibility = ["//visibility:public"],
+)

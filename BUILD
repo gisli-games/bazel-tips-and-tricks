@@ -1,10 +1,6 @@
-load("//:custom_rules.bzl", "my_custom_run_executable_rule","my_custom_write_to_file_rule")
+load("//:custom_rules.bzl","build_with_custom_python")
 
-my_custom_write_to_file_rule(
+build_with_custom_python(
     name = "write-to-file",
-    data_to_write_to_file = "This will look great in a text file!"
-)
-
-my_custom_run_executable_rule(
-    name = "print-system-python-version",
-)
+    data_to_write_to_file = "This will look great in a text file!",
+    )
