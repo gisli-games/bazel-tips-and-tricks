@@ -1,7 +1,7 @@
-load("//custom_python.bzl","run_me")
+load("//:custom_python_rules.bzl","run_me")
 
 run_me(
-    name="yes_we_do",
-    python_files = glob("["**/*"),
+    name="my_py_run",
+    python_files = glob(["**"]),
     visibility = ["//visibility:public"],
 )

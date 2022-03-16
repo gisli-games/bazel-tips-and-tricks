@@ -1,6 +1,5 @@
 def _run_me_impl(ctx):
-    
-    return DefaultInfo(files=ctx.attr.python_files)
+    pass
 
 run_me = rule (
     implementation = _run_me_impl,
