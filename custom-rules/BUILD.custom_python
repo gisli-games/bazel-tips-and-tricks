@@ -1,7 +1,0 @@
-load("//:custom_python_rules.bzl","run_me")
-
-run_me(
-    name="my_py_run",
-    python_files = glob(["**"]),
-    visibility = ["//visibility:public"],
-)
