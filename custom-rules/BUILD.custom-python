@@ -2,12 +2,6 @@ load("@root_workspace//custom-rules:custom-python-rules.bzl","execute_python_fil
 
 package(default_visibility = ["//visibility:public"])
 
-filegroup(
-    name = "python_files",
-    srcs  = glob(["**"])
-)
-
 execute_python_file(
     name="FunOnABun",
-    srcs = glob(["**"]),
     )
