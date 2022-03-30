@@ -1,40 +1,30 @@
-def _my_custom_run_executable_rule_impl(ctx):
-
-    # Declare the file that will be executed
-    executable = ctx.actions.declare_file("run.bat")
-    # Write data into the file
-    ctx.actions.write(
-        output=executable,
-        content="python --version",
-        is_executable = True,
-        )
-
-    # Returns in a way that is executable
-    return DefaultInfo(executable  = executable)
-
-def _my_custom_write_to_file_rule_impl(ctx):
-    # Declaring an output file to write into
-    output_file = ctx.actions.declare_file(ctx.label.name + ".output")
-
-    # Writing the actual data into the file
-    ctx.actions.write(
-        output=output_file,
-        content=ctx.attr.data_to_write_to_file
-        )
-
-    # Creating the DefaultInfo instance that we return out of the build rule
-    output_default_info = DefaultInfo(files = depset([output_file]))
+def _build_with_custom_python_impl(ctx):
     
-    return output_default_info
+    out_file = ctx.actions.declare_file(ctx.attr.output_file_name)
 
-my_custom_write_to_file_rule = rule(
-    implementation = _my_custom_write_to_file_rule_impl,
+    ctx.actions.run(
+        outputs = [out_file],
+        executable = ctx.executable._python_compiler,
+        arguments = [ctx.file.python_file.path, out_file.path, ctx.attr.string_to_write_to_file],
+        mnemonic = "CustomPythonWriteToFile"
+    )
+
+    return DefaultInfo(files=depset([out_file]))
+
+
+build_with_custom_python = rule(
+    implementation = _build_with_custom_python_impl,
     attrs = {
-        "data_to_write_to_file": attr.string()
-    }
+        "string_to_write_to_file": attr.string(),
+        "python_file" : attr.label(allow_single_file = True),
+        "output_file_name" : attr.string(),
+        "_python_compiler": attr.label(
+            executable = True,
+            cfg = "exec",
+            allow_files = True,
+            default = "@hermetic_python//:python.exe",
+        ),
+        
+    },
 )
-
-my_custom_run_executable_rule = rule (
-    implementation = _my_custom_run_executable_rule_impl,
-    executable = True,
-)
+    
