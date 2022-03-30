@@ -1,18 +1,17 @@
-Description of the status of this project is here:
+
 https://stackoverflow.com/questions/71485389/unable-to-use-a-hermetic-python-in-a-bazel-workspace-as-an-external-dependency
 
-# The goal
-The goal of this project was to setup the simplest bazel build that I could think off where I download an external tool into the environment.
+# Overview
+The goal of this project was to setup a simple bazel build where I download an external "tool" and use that tool in the build step. The example downloads python from the official python website, adds a BUILD file for the downloaded python and uses it to write a string to a file.
 
 # How to run
-1) Clone the repo
-2) Navigate to the directory and run .\bazel.exe build :write_text_to_file
+1) Clone the repo _git clone git@github.com:arctictheory/bazel-learning.git_
+2) Run "_run_example.bat_"
 3) Notice that a symlink got created into the folder called "bazel-out"
 4) Notice that a new file got created under bazel-out/x64_windows_fastbuild/bin/ called my_out_file.txt
 
 
 # How does it work
-
 ## WORKSPACE
 The workspace file is where I define the external dependancy. I gave it the name "downloaded-python" and I tell it to use a build file from the root of the workspace 
     
