@@ -6,7 +6,6 @@ def _build_with_custom_python_impl(ctx):
         outputs = [out_file],
         executable = ctx.executable._python_compiler,
         arguments = [ctx.file.python_file.path, out_file.path, ctx.attr.string_to_write_to_file],
-        mnemonic = "CustomPythonWriteToFile"
     )
 
     return DefaultInfo(files=depset([out_file]))
