@@ -1,7 +1,0 @@
-load("@root_workspace//custom-rules:custom-python-rules.bzl","execute_python_file")
-
-package(default_visibility = ["//visibility:public"])
-
-execute_python_file(
-    name="FunOnABun",
-    )
