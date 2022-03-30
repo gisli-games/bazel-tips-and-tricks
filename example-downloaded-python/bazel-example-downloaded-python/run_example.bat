@@ -1,1 +1,0 @@
-..\bazel.exe build :write_text_to_file
