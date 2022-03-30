@@ -22,7 +22,7 @@ build_with_custom_python = rule(
             executable = True,
             cfg = "exec",
             allow_files = True,
-            default = "@hermetic_python//:python.exe",
+            default = "@downloaded-python//:python.exe",
         ),
         
     },
