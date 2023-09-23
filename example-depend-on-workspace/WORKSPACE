@@ -1,0 +1,29 @@
+new_local_repository(
+	name = "external-file",
+	path = "C:\\Work\\bazel-tips-and-tricks\\external-file",
+    build_file_content  = """
+genrule(
+    name = "copy-csv-file-to-out",
+    visibility = ["//visibility:public"],
+    srcs = ["in.txt", "sample-csv//file"],
+    outs = ["out.csv"],
+    cmd = "cat $(location sample-csv//file) > $(location out.csv)"
+)
+    """,
+    workspace_file_content = """
+workspace(name = "my_external_worskpace")
+load("@bazel_tools//tools/build_defs/repo:http.bzl","http_file")
+
+http_file(
+    name = "sample-csv",
+    url = "https://filesamples.com/samples/document/csv/sample4.csv",
+)
+    """,
+)
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl","http_file")
+
+http_file(
+    name = "sample-csv",
+    url = "https://filesamples.com/samples/document/csv/sample4.csv",
+)
