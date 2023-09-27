@@ -15,11 +15,10 @@ python_register_toolchains(
 )
 
 load("@python3_9//:defs.bzl", "interpreter")
-
-
 load("@rules_python//python:pip.bzl", "pip_install")
+
 pip_install(
     name = "pip_install_package",
+    python_interpreter_target = interpreter,
     requirements = "//:requirements.txt",
-    python_interpreter_target = interpreter
 )

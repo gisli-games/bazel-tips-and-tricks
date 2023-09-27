@@ -1,6 +1,6 @@
 genrule(
-    name = "use-external-file",
-    srcs = ["@external-file//:copy-csv-file-to-out"],
+    name = "produce-my-file",
+    srcs = ["@external-raw-data//:convert-to-csv"],
     outs = ["out.txt"],
-    cmd = "cat $(location @external-file//:copy-csv-file-to-out) > $(location out.txt)"
+    cmd = "cat $(location @external-raw-data//:convert-to-csv) > $(location out.txt)"
 )
