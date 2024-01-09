@@ -1,0 +1,18 @@
+BookApplication/
+├── chaptermanager/
+│   ├── tests/
+│   │   ├── data/
+│   │   │   └── test_chapter.txt
+│   │   ├── __init__.py
+│   │   └── test_db.py
+│   ├── __init__.py
+│   ├── db.py
+│   ├── exceptions.py
+│   └── BUILD
+├── .bazeliskrc
+├── BUILD
+├── WORKSPACE
+└── MODULE.bazel
+
+
+https://tree.nathanfriend.io
